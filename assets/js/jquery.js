@@ -1,26 +1,22 @@
 $(function(){
   $('#button').click(function(){
-  var lastName = $('#lastName').val();
-  var firstName = $('#firstName').val();
-  var birthDate = $('#birthDate').val();
-  var birthPlace = $('#birthPlace').val();
-  var job = $('#job').val();
-  var business = $('#business').val();
+    var regexName = /^([A-Z]{1}[a-zÀ-ÖØ-öø-ÿ]+)([- ]{1}[A-Z]{1}[a-zÀ-ÖØ-öø-ÿ]+){0,1}$/;
+    var regexDate = /^\d{4}[-](0?[1-9]|1[012])[-](0?[1-9]|[12][0-9]|3[01])$/;
+    var regexPlace = /^[A-Z]{1}[a-zA-Zéèêàç-']*/;
+    var regexText =/^[A-Za-z0-9-, À-ÖØ-öø-ÿ]+$/;
 
-  var regexText = /^[A-Za-z\à\â\ä\é\è\ê\ë\ï\î\ô\ö\ù\û\ü\ÿ\ç\À\Â\Ä\Ç\É\È\Ê\Ë\Î\Ï\Ô\Ö\Ù\Û\Ü\Ÿ -]+$/;
-  var regexCity = /^[A-Za-z\à\â\ä\é\è\ê\ë\ï\î\ô\ö\ù\û\ü\ÿ\ç\À\Â\Ä\Ç\É\È\Ê\Ë\Î\Ï\Ô\Ö\Ù\Û\Ü\Ÿ ,'-]+$/;
-  // var regexDate =
-console.log(lastName);
-console.log(firstName);
-console.log(birthDate);
-console.log(birthPlace);
-console.log(job);
-console.log(business);
+    var lastName = $('#lastName').val();
+    var firstName = $('#firstName').val();
+    var birthdate = $('#birthdate').val();
+    var birthplace = $('#birthplace').val();
+    var employment = $('#employment').val();
+    var society = $('#society').val();
 
-  if ((regexText.test(lastName) == true) && (regexText.test(firstName) == true) && (regexCity.test(birthPlace) == true) && (regexText.test(job) == true) && (regexText.test(business) == true)){
-    alert(lastName + firstName + ' , né(e) le ' + birthDate + ' à ' + birthPlace +' , actuellement ' + job + ' à ' + business);
-  } else {
-    alert('Vous avez une erreur');
-  }
-});
+    // var regexName = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)$/;
+    if (lastName.match(regexName) && firstName.match(regexName) && birthdate.match(regexDate) && birthplace.match(regexPlace) && employment.match(regexText) && society.match(regexText)){
+      alert(lastName + firstName + ' né le ' + birthdate + ' à ' + birthplace + ' actuellement ' + employment + ' à '+ society);
+    }else{
+      alert('champs invalide');
+    }
+  });
 });
